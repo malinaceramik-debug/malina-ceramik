@@ -1,0 +1,16 @@
+{
+  "name": "Malina Ceramik – Studio Ceramiki",
+  "short_name": "Malina Ceramik",
+  "description": "Wyroby, wypały, odbiory i katalog szkliw pracowni Malina Ceramik.",
+  "lang": "pl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAF5EC",
+  "theme_color": "#FAF5EC",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
