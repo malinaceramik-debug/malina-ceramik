@@ -28,11 +28,11 @@ const Seed = (() => {
   };
 
   const GLAZES = [
-    ['#9FB8AD', '#5F8D6B'], ['#D8B49C', '#C57B57'], ['#B7C5D3', '#7593AD'],
-    ['#E8C2B4', '#E2725B'], ['#CFC4B0', '#9A8A70'], ['#A9C0BC', '#2F5D50'],
-    ['#E3D3BC', '#C9A87E'], ['#D9C8D6', '#9C7E99']
+    ['#F6B58E', '#F39268'], ['#EED5C6', '#DF9183'], ['#B9C7CE', '#8FA5B5'],
+    ['#F0A78F', '#DF7B66'], ['#D8CFC2', '#A99B86'], ['#ADBFB3', '#7E9B88'],
+    ['#EAD9C2', '#CDA67E'], ['#454D50', '#222729']
   ];
-  const BGS = ['#F4EBDD', '#EFE4D2', '#F6EEE2', '#EDE2CE', '#F2E7D4'];
+  const BGS = ['#F6E8DE', '#F2DFD2', '#F9EFE7', '#EFD9CA', '#F4E6DB'];
 
   /* ilustracja naczynia jako dataURL (svg) */
   function vessel(seedStr, opts) {
@@ -49,7 +49,7 @@ const Seed = (() => {
     const n = 26 + Math.floor(r() * 22);
     for (let i = 0; i < n; i++) {
       const x = 60 + r() * 180, y = 70 + r() * 220, s = 0.7 + r() * 1.7;
-      speckles += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${s.toFixed(1)}" fill="#2E2A26" opacity="${(0.05 + r() * 0.1).toFixed(2)}"/>`;
+      speckles += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${s.toFixed(1)}" fill="#222729" opacity="${(0.05 + r() * 0.1).toFixed(2)}"/>`;
     }
     /* wersja "po wypale": połysk i zacieki szkliwa */
     let gloss = '';
@@ -71,8 +71,8 @@ const Seed = (() => {
           <clipPath id="${gid}c"><path d="${path}"/></clipPath>
         </defs>
         <rect width="300" height="340" fill="${bg}"/>
-        <rect y="282" width="300" height="58" fill="#2E2A26" opacity="0.05"/>
-        <ellipse cx="150" cy="300" rx="86" ry="11" fill="#2E2A26" opacity="0.13"/>
+        <rect y="282" width="300" height="58" fill="#222729" opacity="0.05"/>
+        <ellipse cx="150" cy="300" rx="86" ry="11" fill="#222729" opacity="0.13"/>
         <path d="${path}" fill="url(#${gid})"/>
         ${gloss}
         <g clip-path="url(#${gid}c)">${speckles}</g>
@@ -87,10 +87,10 @@ const Seed = (() => {
     const now = Date.now();
 
     /* użytkownicy */
-    const ania = { id: 'u_ania', name: 'Ania Kowalska', role: 'kursant', color: '#C57B57' };
-    const marta = { id: 'u_marta', name: 'Marta Wilk', role: 'kursant', color: '#7593AD' };
-    const tomek = { id: 'u_tomek', name: 'Tomek Lis', role: 'kursant', color: '#5F8D6B' };
-    const malina = { id: 'u_malina', name: 'Malina', role: 'instruktor', color: '#2F5D50' };
+    const ania = { id: 'u_ania', name: 'Ania Kowalska', role: 'kursant', color: '#DF9183' };
+    const marta = { id: 'u_marta', name: 'Marta Wilk', role: 'kursant', color: '#8FA5B5' };
+    const tomek = { id: 'u_tomek', name: 'Tomek Lis', role: 'kursant', color: '#9DAF9B' };
+    const malina = { id: 'u_malina', name: 'Malina', role: 'instruktor', color: '#222729' };
     d.users.push(ania, marta, tomek, malina);
 
     /* materiały */

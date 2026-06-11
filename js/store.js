@@ -2,7 +2,7 @@
    Store – stan aplikacji (localStorage) + zdjęcia (IndexedDB)
    ============================================================ */
 const Store = (() => {
-  const KEY = 'malina_ceramik_v1';
+  const KEY = 'malina_ceramik_v2'; // v2: rebranding – świeże dane demo w kolorach marki
   const DB_NAME = 'malina-ceramik-img';
 
   let data = null;

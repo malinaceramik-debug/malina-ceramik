@@ -40,9 +40,7 @@ const App = (() => {
     document.querySelectorAll('.selectionbar').forEach((b) => b.remove());
     const wrap = UI.el(`
       <div class="rolewrap">
-        <img class="mark" src="icons/icon.svg" alt="">
-        <h1>Malina Ceramik</h1>
-        <div class="sub">Studio Ceramiki</div>
+        <img class="biglogo" src="icons/logo-apron.png" alt="Malina Ceramik – Studio Ceramiki">
         <div class="who">
           <div class="lbl">Wejdź jako</div>
         </div>
@@ -76,8 +74,7 @@ const App = (() => {
     const bar = UI.el(`
       <header class="appbar">
         <button class="brand">
-          <img src="icons/icon.svg" alt="">
-          <span><span class="t">Malina Ceramik</span><br><span class="s">Studio Ceramiki</span></span>
+          <img class="logo" src="icons/logo-script.png" alt="Malina Ceramik – Studio Ceramiki">
         </button>
         <div class="spacer"></div>
         <nav class="tabs"></nav>

@@ -1,12 +1,15 @@
 /* Malina Ceramik – service worker (app shell, offline) */
-const CACHE = 'malina-ceramik-v1';
+const CACHE = 'malina-ceramik-v2';
 const SHELL = [
   './',
   './index.html',
   './styles.css',
   './manifest.webmanifest',
-  './icons/icon.svg',
-  './icons/icon-maskable.svg',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './icons/icon-maskable-512.png',
+  './icons/logo-apron.png',
+  './icons/logo-script.png',
   './js/store.js',
   './js/ui.js',
   './js/seed.js',
