@@ -256,8 +256,10 @@ svg { width: 1.25em; height: 1.25em; flex-shrink: 0; }
 .map-marker .pin {
   width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(45deg);
   display: flex; align-items: center; justify-content: center;
-  border: 2px solid rgba(255,255,255,0.25); box-shadow: var(--shadow-soft);
+  border: 2px solid rgba(255,255,255,0.28);
+  box-shadow: var(--shadow-soft), inset 0 2px 4px rgba(255,255,255,0.25), inset 0 -3px 5px rgba(0,0,0,0.2);
 }
+.map-marker { filter: drop-shadow(0 6px 8px rgba(0,0,0,0.4)); }
 .map-marker .pin svg { transform: rotate(-45deg); width: 15px; height: 15px; }
 /* Pin color here is a visual-variety cycle only, not domain meaning —
    TODO_PRODUCT_DECISION (instruction #7/#35): do not read significance into
@@ -320,8 +322,9 @@ svg { width: 1.25em; height: 1.25em; flex-shrink: 0; }
 .species-bubble .dot {
   width: 40px; height: 40px; border-radius: 50%; background: var(--bg-raised);
   border: 1px solid var(--line); display: flex; align-items: center; justify-content: center;
-  font-size: 17px; flex-shrink: 0; opacity: 0.6; transition: all 160ms ease;
+  flex-shrink: 0; opacity: 0.6; transition: all 160ms ease; overflow: hidden;
 }
+.species-bubble .dot .fish-art { width: 78%; height: auto; }
 .species-bubble.is-focused .dot { width: 48px; height: 48px; opacity: 1; border-color: var(--scan-blue); box-shadow: var(--glow-blue); }
 .species-bubble .name {
   font-size: 12px; background: rgba(4,17,22,0.75); padding: 3px 8px; border-radius: 999px;
@@ -399,9 +402,27 @@ svg { width: 1.25em; height: 1.25em; flex-shrink: 0; }
   scroll-snap-align: center; flex-shrink: 0; width: 62vw; max-width: 260px;
   background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--radius-md);
   overflow: hidden; cursor: pointer; opacity: 0.62; transform: scale(0.92); transition: all 200ms ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
 }
-.cassette.is-active { opacity: 1; transform: scale(1); border-color: var(--scan-blue); box-shadow: var(--glow-blue); }
-.cassette .photo { height: 96px; background-size: cover; background-position: center; position: relative; }
+.cassette.is-active {
+  opacity: 1; transform: scale(1); border-color: var(--scan-blue);
+  box-shadow: var(--glow-blue), 0 14px 30px rgba(0,0,0,0.45);
+}
+.cassette .photo {
+  height: 96px; position: relative; overflow: hidden;
+  background:
+    radial-gradient(circle at 75% 20%, rgba(255,255,255,0.10), transparent 55%),
+    linear-gradient(160deg, #163f47 0%, #0c2830 55%, #061419 100%);
+}
+.cassette .photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(4,17,22,0.55) 0%, transparent 45%);
+}
+.cassette .photo::before {
+  content: ''; position: absolute; left: -10%; right: -10%; bottom: 12px; height: 14px;
+  background: repeating-linear-gradient(100deg, rgba(160,220,225,0.10) 0 6px, transparent 6px 16px);
+  transform: skewY(-2deg);
+}
 .cassette .photo .distance-tag {
   position: absolute; right: 8px; bottom: 8px; font-size: 10.5px; background: rgba(4,17,22,0.75);
   padding: 2px 7px; border-radius: 999px;
@@ -436,7 +457,8 @@ svg { width: 1.25em; height: 1.25em; flex-shrink: 0; }
   display: flex; align-items: center; gap: 6px; padding: 6px 12px 6px 6px;
   border-radius: 999px; background: var(--bg-raised); border: 1px solid var(--line); cursor: pointer; font-size: 13px;
 }
-.species-chip .thumb { width: 26px; height: 26px; border-radius: 50%; background: var(--bg-raised-2); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.species-chip .thumb { width: 26px; height: 26px; border-radius: 50%; background: var(--bg-raised-2); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.species-chip .thumb .fish-art { width: 88%; height: auto; }
 .presence-dot { width: 7px; height: 7px; border-radius: 50%; }
 .presence-dot.status-confirmed_source { background: var(--success); }
 .presence-dot.status-community_confirmed { background: var(--gold-strong); }
@@ -446,10 +468,19 @@ svg { width: 1.25em; height: 1.25em; flex-shrink: 0; }
 
 .fishibox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .species-card { background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; cursor: pointer; }
-.species-card .art { height: 108px; background: var(--bg-raised-2); display: flex; align-items: center; justify-content: center; font-size: 40px; }
+.species-card .art { height: 108px; background: var(--bg-raised-2); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.fish-art { width: 100%; height: 100%; display: block; }
+.species-card .art .fish-art { width: 72%; height: auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35)); }
 .species-card .body { padding: 10px 12px 12px 12px; }
 .species-card .name-pl { font-weight: 700; font-size: 14.5px; margin: 0; }
 .species-card .name-latin { font-size: 11.5px; font-style: italic; color: var(--text-muted); margin: 2px 0 8px 0; }
+
+.species-hero-art {
+  height: 190px; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 50% 40%, rgba(24,192,192,0.10), transparent 70%), var(--bg-raised);
+  overflow: hidden;
+}
+.species-hero-art .fish-art { width: 68%; height: auto; filter: drop-shadow(0 8px 18px rgba(0,0,0,0.4)); }
 
 /* ================= ACTIVE TRIP ================= */
 
@@ -475,8 +506,9 @@ svg { width: 1.25em; height: 1.25em; flex-shrink: 0; }
 .avatar:first-child { margin-left: 0; }
 
 .catch-marker { position: absolute; transform: translate(-50%,-100%); }
-.catch-marker .dot { width: 26px; height: 26px; border-radius: 50%; background: var(--gold-strong); color: #2b1a00; display:flex; align-items:center; justify-content:center; box-shadow: var(--shadow-soft); border: 2px solid rgba(255,255,255,0.3); }
-.catch-marker .dot svg { width: 14px; height: 14px; }
+.catch-marker .dot { width: 28px; height: 28px; border-radius: 50%; background: var(--gold-strong); color: #2b1a00; display:flex; align-items:center; justify-content:center; box-shadow: var(--shadow-soft), 0 0 0 3px rgba(254,173,52,0.18); border: 2px solid rgba(255,255,255,0.35); overflow: hidden; }
+.catch-marker .dot svg:not(.fish-art) { width: 14px; height: 14px; }
+.catch-marker .dot .fish-art { width: 100%; height: 100%; padding: 3px; box-sizing: border-box; }
 
 .trip-sheet-priority { display: flex; flex-direction: column; gap: 12px; }
 .trip-sheet-header { display: flex; align-items: center; justify-content: space-between; }
@@ -511,7 +543,8 @@ svg { width: 1.25em; height: 1.25em; flex-shrink: 0; }
   display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px;
   border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--bg-raised); cursor: pointer; font-size: 11.5px;
 }
-.species-pick .thumb { width: 34px; height: 34px; border-radius: 50%; background: var(--bg-raised-2); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.species-pick .thumb { width: 34px; height: 34px; border-radius: 50%; background: var(--bg-raised-2); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.species-pick .thumb .fish-art { width: 88%; height: auto; }
 .species-pick.is-selected { border-color: var(--teal); background: rgba(24,192,192,0.1); color: var(--teal); }
 
 /* ---------- Celebration overlay ---------- */

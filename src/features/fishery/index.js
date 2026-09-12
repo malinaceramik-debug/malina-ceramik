@@ -1,5 +1,6 @@
 import { getState, savePrivateSpot, showToast } from '../../state/store.js';
 import { icons } from '../../ui/icons.js';
+import { getFishArt } from '../../ui/fishArt.js';
 import { escapeHtml } from '../../ui/format.js';
 
 const TABS = [
@@ -56,7 +57,7 @@ export function render(root, params) {
         <div class="species-chip-row">
           ${rows.map(({ s, status }) => `
             <div class="species-chip" data-species="${s.id}">
-              <span class="thumb">🐟</span><span>${escapeHtml(s.namePl)}</span>
+              <span class="thumb">${getFishArt(s.id)}</span><span>${escapeHtml(s.namePl)}</span>
               <span class="presence-dot status-${status}" title="${statusLabel(status)}"></span>
             </div>`).join('')}
         </div>

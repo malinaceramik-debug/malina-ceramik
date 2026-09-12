@@ -1,5 +1,7 @@
 import { getState, subscribe, setSelectedFishery, setScanState, startSpontaneousTrip, showToast } from '../../state/store.js';
 import { icons } from '../../ui/icons.js';
+import { getFishArt } from '../../ui/fishArt.js';
+import { renderMapTerrainSvg } from '../../ui/mapArt.js';
 import { runDemoScan } from '../../adapters/scanner.js';
 import { demoSearchPlaces } from '../../adapters/geocoder.js';
 import { getCurrentPosition, isGeolocationSupported } from '../../adapters/geolocation.js';
@@ -24,23 +26,7 @@ export function render(root) {
     <div class="screen screen--map" id="map-screen">
       <div class="map-surface" data-map-status="prototype-placeholder" role="img"
            aria-label="Podgląd mapy okolicy (dane demonstracyjne, nie prawdziwa mapa)">
-        <svg class="map-art" viewBox="0 0 390 780" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect x="0" y="0" width="390" height="780" fill="url(#mapBg)"/>
-          <path class="map-water" d="M-20,120 C60,160 90,260 40,320 C0,360 40,430 120,420 C210,410 230,500 190,560 C150,620 220,660 300,630 C360,606 410,660 410,700 L410,800 L-20,800 Z" />
-          <path class="map-water map-water--soft" d="M410,60 C330,90 300,170 350,230 C390,275 360,330 300,320 C230,308 190,370 230,420" />
-          <g class="map-grid">
-            <circle cx="40" cy="80" r="1.4"/><circle cx="120" cy="140" r="1.4"/><circle cx="260" cy="90" r="1.4"/>
-            <circle cx="330" cy="200" r="1.4"/><circle cx="70" cy="260" r="1.4"/><circle cx="200" cy="230" r="1.4"/>
-            <circle cx="310" cy="330" r="1.4"/><circle cx="150" cy="380" r="1.4"/><circle cx="60" cy="420" r="1.4"/>
-            <circle cx="250" cy="460" r="1.4"/><circle cx="340" cy="500" r="1.4"/><circle cx="110" cy="540" r="1.4"/>
-            <circle cx="200" cy="600" r="1.4"/><circle cx="320" cy="640" r="1.4"/><circle cx="60" cy="660" r="1.4"/>
-          </g>
-          <defs>
-            <radialGradient id="mapBg" cx="50%" cy="38%" r="75%">
-              <stop offset="0%" stop-color="#0b2430"/><stop offset="55%" stop-color="#041116"/><stop offset="100%" stop-color="#000a12"/>
-            </radialGradient>
-          </defs>
-        </svg>
+        ${renderMapTerrainSvg('map')}
         <div class="map-user-dot" aria-hidden="true"><span class="map-user-dot__ring"></span></div>
         <p class="map-placeholder-tag">Mapa demonstracyjna — bez rzeczywistych danych</p>
         <div id="markers-layer"></div>
@@ -291,7 +277,7 @@ export function render(root) {
       <div class="species-rail" role="listbox" aria-label="Gatunki w tym łowisku">
         ${speciesList.map((s, i) => `
           <div class="species-bubble ${i === 0 ? 'is-focused' : ''}" data-species="${s.id}" role="option">
-            <span class="dot">🐟</span><span class="name">${escapeHtml(s.namePl)}</span>
+            <span class="dot">${getFishArt(s.id)}</span><span class="name">${escapeHtml(s.namePl)}</span>
           </div>`).join('')}
       </div>`;
     wrap.querySelectorAll('.species-bubble').forEach((b) => {

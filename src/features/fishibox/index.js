@@ -1,5 +1,6 @@
 import { getState } from '../../state/store.js';
 import { icons } from '../../ui/icons.js';
+import { getFishArt } from '../../ui/fishArt.js';
 import { escapeHtml } from '../../ui/format.js';
 
 const FILTERS = [
@@ -36,7 +37,7 @@ export function render(root) {
     }
     grid.innerHTML = list.map((s) => `
       <div class="species-card" data-species="${s.id}">
-        <div class="art">🐟</div>
+        <div class="art">${getFishArt(s.id)}</div>
         <div class="body">
           <p class="name-pl">${escapeHtml(s.namePl)}</p>
           <p class="name-latin">${escapeHtml(s.nameLatin)}</p>

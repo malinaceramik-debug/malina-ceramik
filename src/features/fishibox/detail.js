@@ -1,6 +1,7 @@
 import { getState, filterMapBySpecies } from '../../state/store.js';
 import { computePersonalBests } from '../../domain/catch.js';
 import { icons } from '../../ui/icons.js';
+import { getFishArt } from '../../ui/fishArt.js';
 import { escapeHtml, formatDatePl } from '../../ui/format.js';
 
 const TABS = [
@@ -92,7 +93,7 @@ export function render(root, params) {
         <div class="spacer"></div>
       </div>
       <div class="section" style="padding-top:0;">
-        <div class="card" style="display:flex; align-items:center; justify-content:center; height:180px; font-size:64px; margin-bottom:16px;">🐟</div>
+        <div class="card species-hero-art" style="margin-bottom:16px; padding:0;">${getFishArt(species.id)}</div>
         <h1 style="margin:0; font-size:22px;">${escapeHtml(species.namePl)}</h1>
         <p style="margin:2px 0 16px 0; font-style:italic; color:var(--text-muted);">${escapeHtml(species.nameLatin)}</p>
         <div class="tabs" style="margin-bottom:16px;">

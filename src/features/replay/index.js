@@ -1,5 +1,6 @@
 import { getState } from '../../state/store.js';
 import { icons } from '../../ui/icons.js';
+import { renderMapTerrainSvg } from '../../ui/mapArt.js';
 import { formatTimePl, escapeHtml } from '../../ui/format.js';
 
 function prefersReducedMotion() {
@@ -76,6 +77,7 @@ export function render(root, params) {
         <h1>Replay wyprawy</h1>
       </div>
       <div class="replay-stage">
+        ${renderMapTerrainSvg('replay')}
         <div class="replay-track" id="replay-track">
           ${!path.isReal ? '<p class="map-placeholder-tag" style="bottom:10px;">Trasa przykładowa — brak zarejestrowanego GPS dla tej wyprawy</p>' : ''}
           ${events.map((ev, i) => {

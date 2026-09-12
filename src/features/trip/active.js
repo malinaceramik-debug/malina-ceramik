@@ -6,6 +6,8 @@ import { listInvitableFriends, simulateFriendCatch } from '../../adapters/friend
 import { getDemoWeatherSnapshot } from '../../adapters/weather.js';
 import * as Trip from '../../domain/trip.js';
 import { icons } from '../../ui/icons.js';
+import { getFishArt } from '../../ui/fishArt.js';
+import { renderMapTerrainSvg } from '../../ui/mapArt.js';
 import { formatHms, formatCatchCount, escapeHtml } from '../../ui/format.js';
 
 export function render(root) {
@@ -23,14 +25,10 @@ export function render(root) {
   root.innerHTML = `
     <div class="screen screen--map">
       <div class="map-surface" data-map-status="prototype-placeholder">
-        <svg class="map-art" viewBox="0 0 390 780" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="390" height="780" fill="url(#tripBg)"/>
-          <path class="map-water" d="M-20,150 C80,180 100,260 40,320 C-10,370 60,440 140,420 C220,400 250,480 200,540 C150,600 230,660 320,620 C380,594 420,650 420,700 L420,800 L-20,800 Z"/>
-        </svg>
+        ${renderMapTerrainSvg('trip')}
         <div id="participant-pins"></div>
         <div id="catch-markers"></div>
         <p class="map-placeholder-tag">Mapa demonstracyjna — trasa zapisywana w tle na potrzeby replayu</p>
-        <defs></defs>
       </div>
 
       <div id="forgotten-end-slot"></div>
@@ -47,7 +45,6 @@ export function render(root) {
         <button type="button" class="icon-btn" id="invite-btn" aria-label="Zaproś znajomego">${icons.users}</button>
       </div>
 
-      <svg width="0" height="0"><defs><radialGradient id="tripBg" cx="50%" cy="30%" r="80%"><stop offset="0%" stop-color="#0b2430"/><stop offset="100%" stop-color="#000a12"/></radialGradient></defs></svg>
 
       <div class="sheet" id="trip-sheet">
         <div class="collapse-handle" id="collapse-handle"><div class="sheet-handle"></div></div>
@@ -92,7 +89,7 @@ export function render(root) {
       const left = 25 + ((i * 37) % 55) + 10;
       const top = 45 + ((i * 23) % 30);
       const species = getState().species.find((s) => s.id === c.speciesId);
-      return `<div class="catch-marker" style="left:${left}%; top:${top}%;" title="${escapeHtml(species?.namePl ?? 'Nieznany gatunek')}"><span class="dot">${icons.water}</span></div>`;
+      return `<div class="catch-marker" style="left:${left}%; top:${top}%;" title="${escapeHtml(species?.namePl ?? 'Nieznany gatunek')}"><span class="dot">${c.speciesId ? getFishArt(c.speciesId) : icons.water}</span></div>`;
     }).join('');
   }
 
