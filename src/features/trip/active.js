@@ -6,7 +6,7 @@ import { listInvitableFriends, simulateFriendCatch } from '../../adapters/friend
 import { getDemoWeatherSnapshot } from '../../adapters/weather.js';
 import * as Trip from '../../domain/trip.js';
 import { icons } from '../../ui/icons.js';
-import { formatHms, escapeHtml } from '../../ui/format.js';
+import { formatHms, formatCatchCount, escapeHtml } from '../../ui/format.js';
 
 export function render(root) {
   const trip = getActiveTrip();
@@ -55,7 +55,7 @@ export function render(root) {
           <div class="trip-sheet-header">
             <div>
               <h2>${escapeHtml(fishery?.name ?? 'Miejsce prywatne')}</h2>
-              <div class="place-sub" id="catch-count-label">${getState().catches.filter((c) => c.tripId === trip.id).length} zapisanych ryb</div>
+              <div class="place-sub" id="catch-count-label">${formatCatchCount(getState().catches.filter((c) => c.tripId === trip.id).length)}</div>
             </div>
           </div>
           <button type="button" class="trip-add-catch-btn" id="add-catch-btn">${icons.camera}<span>Dodaj rybę</span></button>
@@ -97,7 +97,7 @@ export function render(root) {
   }
 
   function renderCatchCount() {
-    root.querySelector('#catch-count-label').textContent = `${getState().catches.filter((c) => c.tripId === trip.id).length} zapisanych ryb`;
+    root.querySelector('#catch-count-label').textContent = `${formatCatchCount(getState().catches.filter((c) => c.tripId === trip.id).length)}`;
   }
 
   function renderPauseButton() {

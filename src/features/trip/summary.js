@@ -1,7 +1,7 @@
 import { getState, savePrivateSpot, assignGearToTrip, showToast } from '../../state/store.js';
 import * as Trip from '../../domain/trip.js';
 import { icons } from '../../ui/icons.js';
-import { formatDuration, formatDatePl, formatTimePl, escapeHtml } from '../../ui/format.js';
+import { formatDuration, formatDatePl, formatTimePl, plPlural, escapeHtml } from '../../ui/format.js';
 
 export function render(root, params) {
   const trip = getState().trips.find((t) => t.id === params.id);
@@ -25,7 +25,7 @@ export function render(root, params) {
     const allReleased = mine.every((c) => c.releaseStatus === 'released');
     if (allReleased) highlights.push('Wszystkie ryby wypuszczone.');
   }
-  if (friendCatches.length > 0) highlights.push(`Znajomi zapisali ${friendCatches.length} ${friendCatches.length === 1 ? 'połów' : 'połowy'}.`);
+  if (friendCatches.length > 0) highlights.push(`Znajomi zapisali ${friendCatches.length} ${plPlural(friendCatches.length, 'połów', 'połowy', 'połowów')}.`);
 
   root.innerHTML = `
     <div class="screen">

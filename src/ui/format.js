@@ -28,6 +28,24 @@ export function formatTimePl(iso) {
   return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
 }
 
+/** Polish plural rules: 1 -> one, 2-4 (not 12-14) -> few, else -> many. */
+export function plPlural(n, one, few, many) {
+  const abs = Math.abs(n);
+  if (abs === 1) return one;
+  const lastDigit = abs % 10;
+  const lastTwo = abs % 100;
+  if (lastDigit >= 2 && lastDigit <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) return few;
+  return many;
+}
+
+export function formatCatchCount(n) {
+  return `${n} ${plPlural(n, 'zapisana ryba', 'zapisane ryby', 'zapisanych ryb')}`;
+}
+
+export function formatTripCount(n) {
+  return `${n} ${plPlural(n, 'wyprawa', 'wyprawy', 'wypraw')}`;
+}
+
 export function escapeHtml(str) {
   return String(str ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }

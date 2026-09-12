@@ -1,5 +1,5 @@
 import { getState, startPlannedTrip } from '../../state/store.js';
-import { formatDatePl, formatDuration, escapeHtml } from '../../ui/format.js';
+import { formatDatePl, formatDuration, plPlural, escapeHtml } from '../../ui/format.js';
 import * as Trip from '../../domain/trip.js';
 
 const PHASE_LABEL = { planned: 'Zaplanowana', active: 'Trwa', paused: 'Pauza', ended: 'Zakończona' };
@@ -47,7 +47,7 @@ function tripRow(t) {
       <div class="thumb" style="background:linear-gradient(135deg,#123a44,#0b2430); display:flex; align-items:center; justify-content:center;">🎣</div>
       <div class="main">
         <div class="title">${escapeHtml(fishery?.name ?? t.privatePlaceName ?? 'Nieznane miejsce')}</div>
-        <div class="sub">${dateLabel}${durationLabel ? ' · ' + durationLabel : ''} · ${catches.length} ${catches.length === 1 ? 'połów' : 'połowów'}</div>
+        <div class="sub">${dateLabel}${durationLabel ? ' · ' + durationLabel : ''} · ${catches.length} ${plPlural(catches.length, 'połów', 'połowy', 'połowów')}</div>
       </div>
       <span class="badge ${PHASE_BADGE[t.phase]}">${PHASE_LABEL[t.phase]}</span>
     </div>`;

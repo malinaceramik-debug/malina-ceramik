@@ -2,7 +2,7 @@ import { getState, getAchievements } from '../../state/store.js';
 import { computePersonalBests } from '../../domain/catch.js';
 import * as Trip from '../../domain/trip.js';
 import { icons } from '../../ui/icons.js';
-import { formatDuration, escapeHtml } from '../../ui/format.js';
+import { formatDuration, formatTripCount, escapeHtml } from '../../ui/format.js';
 
 export function render(root) {
   const user = getState().user;
@@ -27,7 +27,7 @@ export function render(root) {
           <div class="big-avatar">${user.displayName.slice(0, 1)}</div>
           <div>
             <h2>${escapeHtml(user.displayName)}</h2>
-            <div class="sub">${trips.length} ${trips.length === 1 ? 'wyprawa' : 'wypraw'} · ${earned.size}/5 osiągnięć</div>
+            <div class="sub">${formatTripCount(trips.length)} · ${earned.size}/5 osiągnięć</div>
           </div>
         </div>
 
