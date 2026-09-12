@@ -1,0 +1,52 @@
+/*
+  Fishi 3.0 — design tokens, dark/neon direction.
+
+  Values below were sampled programmatically (pixel cluster analysis, not
+  eyeballed) from the 15 reference screenshots in design/reference/*.png,
+  confirmed by the product owner as the real V01 direction (2026-09-12).
+
+  This supersedes the "light pastel" token block described in the original
+  master handoff document — that palette is retired, not a fallback.
+
+  Treat these as a FIRST PASS baseline: refine only against design/reference
+  screenshots (owner review), never redesign from memory or preference.
+*/
+
+:root {
+  /* Backgrounds — near-black navy/teal, not pure black, not literally #000 UI */
+  --bg-deep: #000d18;      /* app background, deepest layer (map night sky, screen root) */
+  --bg-base: #041116;      /* primary screen background */
+  --bg-raised: #09232a;    /* raised panels, bottom sheets, cards */
+  --bg-raised-2: #0e3138;  /* nested panels / stat tiles inside a raised panel */
+  --bg-panel-alt: #183030; /* alternate panel tone seen in map overlays */
+
+  /* Borders / separators on dark surfaces */
+  --line: #1f3a3f;
+  --line-soft: rgba(255, 255, 255, 0.08);
+
+  /* Text */
+  --text-primary: #f5f5f5;
+  --text-secondary: #9fb3b8;
+  --text-muted: #637f78;
+
+  /* Accents */
+  --teal: #18c0c0;        /* primary CTA buttons: "Rozpocznij teraz", "Pokaż łowiska na mapie" */
+  --teal-strong: #0fb3b3;
+  --scan-blue: #067bfb;   /* scanner pulse rings, active location dot — brighter/bluer than --teal */
+  --gold: #dca94b;        /* records, PRO badge, "warto spojrzeć" highlights */
+  --gold-strong: #fead34;
+  --danger: #ef4d51;      /* end trip / destructive actions */
+  --success: #2ecc71;     /* "w sezonie" / confirmed-presence pin state (to confirm with owner) */
+  --unknown: #8a97a0;     /* gray pin state — unconfirmed/inferred presence (to confirm with owner) */
+
+  /* Radius / shadow language — large-ish rounded, soft glow rather than hard shadow */
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --glow-teal: 0 0 24px rgba(24, 192, 192, 0.35);
+  --glow-blue: 0 0 32px rgba(6, 123, 251, 0.45);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
