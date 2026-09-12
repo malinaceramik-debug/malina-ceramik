@@ -169,6 +169,11 @@ export function inviteFriendToActiveTrip(friendId) {
   replaceTrip(Trip.addParticipant(trip, friendId));
 }
 
+export function addParticipantToTrip(tripId, friendId) {
+  const trip = requireTrip(tripId);
+  replaceTrip(Trip.addParticipant(trip, friendId));
+}
+
 export function recordRoutePointForActiveTrip(point) {
   if (!state.ui.activeTripId) return;
   const trip = requireTrip(state.ui.activeTripId);
@@ -183,6 +188,11 @@ export function suggestForgottenEnd(tripId, reason) {
 export function dismissForgottenEnd(tripId) {
   const trip = requireTrip(tripId);
   replaceTrip({ ...trip, forgottenEndSuggestion: null });
+}
+
+export function assignGearToTrip(tripId, gearKitId) {
+  const trip = requireTrip(tripId);
+  replaceTrip({ ...trip, gearKitId });
 }
 
 function requireTrip(tripId) {
