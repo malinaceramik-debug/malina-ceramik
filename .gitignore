@@ -1,0 +1,5 @@
+# Local mirror used only to publish the Claude Artifact preview link.
+# Not a source of truth — the real app is index.html / styles.css / js/app.js
+# at the repo root plus design/tokens.css. Regenerate by copying those files
+# if this ever needs to be rebuilt.
+design/artifact-preview/
